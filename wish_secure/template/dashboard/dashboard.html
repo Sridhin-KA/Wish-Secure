@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Space ❤️
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="floating-hearts">
+
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💗</span>
+    <span>💖</span>
+    <span>❤️</span>
+    <span>💞</span>
+
+</div>
+
+
+<!-- Welcome Section -->
+
+<section class="welcome-section">
+
+    <div>
+
+        <p class="small-heading">
+            OUR LITTLE SPACE
+        </p>
+
+        <h1>
+            Hello, {{ request.user.first_name }} ❤️
+        </h1>
+
+        <p class="welcome-text">
+            Every little wish, every little memory,
+            and every little moment matters.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- Statistics -->
+
+<section class="stats-grid">
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon">
+            ❤️
+        </div>
+
+        <div>
+
+            <h2>{{ total }}</h2>
+
+            <p>Total Wishes</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon completed-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <h2>{{ completed }}</h2>
+
+            <p>Completed</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon pending-icon">
+            ⏳
+        </div>
+
+        <div>
+
+            <h2>{{ pending }}</h2>
+
+            <p>Waiting for Us</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon comment-icon">
+            💬
+        </div>
+
+        <div>
+
+            <h2>{{ comments }}</h2>
+
+            <p>Conversations</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Latest Wishes -->
+
+<section class="latest-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+                WISHES
+            </p>
+
+            <h2>
+                Something We Wished For 💕
+            </h2>
+
+        </div>
+
+        <a href="{% url 'wish_list' %}" class="view-all-btn">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="latest-grid">
+
+
+        <!-- My Latest -->
+
+        <div class="latest-card my-card">
+
+            <div class="card-top">
+
+                <span class="card-label">
+                    ❤️ YOUR LATEST
+                </span>
+
+                <span class="card-heart">
+                    ♥
+                </span>
+
+            </div>
+
+
+            {% if my_latest %}
+
+                <h3>
+                    {{ my_latest.title }}
+                </h3>
+
+                <p>
+                    {{ my_latest.description|truncatewords:18 }}
+                </p>
+
+                <div class="wish-meta">
+
+                    <span>
+                        {{ my_latest.created_at|date:"d M Y" }}
+                    </span>
+
+                    <span class="status-pill">
+                        {{ my_latest.status }}
+                    </span>
+
+                </div>
+
+                <a
+                    href="{% url 'view_wish' my_latest.id %}"
+                    class="card-link">
+
+                    Open Wish
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            {% else %}
+
+                <div class="empty-mini">
+
+                    <span>💭</span>
+
+                    <p>
+                        You haven't added a wish yet.
+                    </p>
+
+                    <a href="{% url 'add_wish' %}">
+                        Add One ❤️
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Partner Latest -->
+
+        <div class="latest-card partner-card">
+
+            <div class="card-top">
+
+                <span class="card-label">
+                    💖 THEIR LATEST
+                </span>
+
+                <span class="card-heart">
+                    ♥
+                </span>
+
+            </div>
+
+
+            {% if partner_latest %}
+
+                <h3>
+                    {{ partner_latest.title }}
+                </h3>
+
+                <p>
+                    {{ partner_latest.description|truncatewords:18 }}
+                </p>
+
+                <div class="wish-meta">
+
+                    <span>
+                        {{ partner_latest.created_at|date:"d M Y" }}
+                    </span>
+
+                    <span class="status-pill">
+                        {{ partner_latest.status }}
+                    </span>
+
+                </div>
+
+                <a
+                    href="{% url 'view_wish' partner_latest.id %}"
+                    class="card-link">
+
+                    Open Wish
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            {% else %}
+
+                <div class="empty-mini">
+
+                    <span>💭</span>
+
+                    <p>
+                        No wish from them yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Love Message -->
+
+<section class="love-message">
+
+    <div class="love-icon">
+        ❤️
+    </div>
+
+    <div>
+
+        <p class="small-heading">
+            A LITTLE REMINDER
+        </p>
+
+        <h2>
+            Don't forget the little things.
+        </h2>
+
+        <p>
+            Sometimes the smallest wishes become
+            our favourite memories.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- Recent Conversations -->
+
+<section class="activity-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+                OUR STORY
+            </p>
+
+            <h2>
+                Recent Conversations 💬
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="activity-card">
+
+    {% for activity in activities %}
+
+        <div class="activity-item">
+
+            <div class="activity-avatar">
+
+                {% if activity.action == "added" %}
+
+                    ❤️
+
+                {% elif activity.action == "commented" %}
+
+                    💬
+
+                {% elif activity.action == "completed" %}
+
+                    ✅
+
+                {% elif activity.action == "edited" %}
+
+                    ✏️
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="activity-content">
+
+                <p>
+
+                    {% if activity.user == request.user %}
+
+                        <strong>
+                            You
+                        </strong>
+
+                    {% else %}
+
+                        <strong>
+                            {{ activity.user.first_name }}
+                        </strong>
+
+                    {% endif %}
+
+                    {{ activity.message }}
+
+                </p>
+
+                <small>
+
+                    {{ activity.created_at|timesince }}
+                    ago
+
+                </small>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="no-activity">
+
+            <span>💌</span>
+
+            <h3>
+                Your story starts here.
+            </h3>
+
+            <p>
+                Add a wish and create your first memory.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+</section>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}

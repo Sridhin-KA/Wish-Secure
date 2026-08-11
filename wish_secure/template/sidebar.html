@@ -1,0 +1,127 @@
+<div class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+        ❤️
+
+        <h2>
+
+            WishSecure
+
+        </h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="{% url 'dashboard' %}">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="{% url 'wish_list' %}" class="{% if request.resolver_match.url_name == 'wish_list' %}active{% endif %}">
+
+                <i class="fa-solid fa-heart"></i>
+
+                Wishes
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-handshake"></i>
+
+                Promises
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-gift"></i>
+
+                Gifts
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-envelope-open-heart"></i>
+
+                Letters
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-images"></i>
+
+                Memories
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-calendar-heart"></i>
+
+                Special Dates
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#">
+
+                <i class="fa-solid fa-clock"></i>
+
+                Reminders
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="{% url 'logout' %}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>

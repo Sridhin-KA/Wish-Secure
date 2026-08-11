@@ -1,0 +1,53 @@
+<nav class="navbar">
+
+    <div class="left-nav">
+
+        <button id="menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <h2>
+
+            ❤️ WishSecure
+
+        </h2>
+
+    </div>
+
+    <div class="right-nav">
+
+        <button class="icon-btn">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span class="badge">
+
+    {{ unread_notifications|default:0 }}
+
+</span>
+
+        </button>
+
+        <button class="icon-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            <span>
+
+                {{request.user.first_name}}
+
+            </span>
+
+        </div>
+
+    </div>
+
+</nav>

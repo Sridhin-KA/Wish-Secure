@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{wish.title}}
+{% endblock %}
+
+{% block content %}
+
+<div class="wish-detail-card">
+
+{% if wish.image %}
+
+<img src="{{wish.image.url}}" class="wish-banner">
+
+{% endif %}
+
+<div class="detail-body">
+
+<h2>
+
+❤️ {{wish.title}}
+
+</h2>
+
+<p class="description">
+
+{{wish.description}}
+
+</p>
+{% if wish.status != "Completed" %}
+
+<a href="{% url 'complete_wish' wish.id %}"
+class="complete-btn">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Mark as Completed ❤️
+
+</a>
+
+{% else %}
+
+<div class="completed-box">
+
+✅ Completed by
+
+<b>
+
+{{wish.completed_by.first_name}}
+
+</b>
+
+<br>
+
+{{wish.completed_at|date:"d M Y h:i A"}}
+
+</div>
+
+{% endif %}
+
+<div class="info-grid">
+
+<div>
+
+<strong>Category</strong>
+
+<br>
+
+{{wish.category}}
+
+</div>
+
+<div>
+
+<strong>Priority</strong>
+
+<br>
+
+<span class="priority {{wish.priority|lower}}">
+
+{{wish.priority}}
+
+</span>
+
+</div>
+
+<div>
+
+<strong>Status</strong>
+
+<br>
+
+{{wish.status}}
+
+</div>
+
+<div>
+
+<strong>Visibility</strong>
+
+<br>
+
+{{wish.visibility}}
+
+</div>
+
+</div>
+
+<hr>
+
+<p>
+
+<b>Added By</b>
+
+{{wish.created_by.first_name}}
+
+</p>
+
+<p>
+
+<b>Date</b>
+
+{{wish.created_at|date:"d M Y"}}
+
+</p>
+
+<div class="actions">
+
+{% if request.user == wish.created_by %}
+
+<a href="{% url 'edit_wish' wish.id %}" class="edit-btn">
+
+✏ Edit
+
+</a>
+
+<a href="{% url 'delete_wish' wish.id %}"
+
+onclick="return confirm('Delete this wish?')"
+
+class="delete-btn">
+
+🗑 Delete
+
+</a>
+
+{% endif %}
+
+<a href="{% url 'wish_list' %}" class="back-btn">
+
+← Back
+
+</a>
+
+</div>
+
+<hr>
+
+<h3>
+
+💬 Our Conversation
+
+</h3>
+
+<form method="POST"
+
+action="{% url 'add_comment' wish.id %}"
+
+class="comment-form">
+
+{% csrf_token %}
+
+<textarea
+
+name="comment"
+
+placeholder="Write something..." 
+
+required>
+
+</textarea>
+
+<button>
+
+Send ❤️
+
+</button>
+
+</form>
+
+<div class="comments">
+
+{% for comment in wish.comments.all %}
+
+<div class="comment-card">
+
+<div class="comment-header">
+
+<strong>
+
+{% if request.user == comment.user %}
+
+You ❤️
+
+{% else %}
+
+{{comment.user.first_name}} 💖
+
+{% endif %}
+
+</strong>
+
+<span>
+
+{{comment.created_at|date:"d M Y"}}
+
+</span>
+
+</div>
+
+<p>
+
+{{comment.comment}}
+
+</p>
+
+</div>
+
+{% empty %}
+
+<p>
+
+No comments yet ❤️
+
+</p>
+
+{% endfor %}
+
+</div>
+</div>
+
+</div>
+
+{% endblock %}

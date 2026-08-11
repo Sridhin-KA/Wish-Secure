@@ -1,0 +1,103 @@
+.navbar{
+
+    background:white;
+
+    height:80px;
+
+    padding:0 35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.left-nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+#menu-btn{
+
+    background:none;
+
+    border:none;
+
+    font-size:22px;
+
+}
+
+.right-nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.icon-btn{
+
+    border:none;
+
+    background:#f8f4ff;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    position:relative;
+
+}
+
+.badge{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#ff4d6d;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+}
+
+.profile{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    font-weight:600;
+
+}

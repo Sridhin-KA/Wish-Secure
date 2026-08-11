@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Wish Vault
+{% endblock %}
+
+{% block content %}
+
+<div class="top-bar">
+
+    <h2>
+
+        ❤️ Wish Vault
+
+    </h2>
+    <form method="GET" class="filter-box">
+
+<input
+type="text"
+name="search"
+placeholder="Search Wishes..."
+value="{{search}}">
+
+<select name="priority">
+
+<option value="">Priority</option>
+
+<option value="High">High</option>
+
+<option value="Medium">Medium</option>
+
+<option value="Low">Low</option>
+
+</select>
+
+<select name="category">
+
+<option value="">Category</option>
+
+{% for i in categories %}
+
+<option value="{{i.id}}">
+
+{{i.name}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<select name="status">
+
+<option value="">Status</option>
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+<option value="In Progress">
+
+In Progress
+
+</option>
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+</select>
+
+<select name="sort">
+
+<option value="latest">
+
+Latest
+
+</option>
+
+<option value="old">
+
+Oldest
+
+</option>
+
+</select>
+
+<button class="filter-btn">
+
+<i class="fa-solid fa-filter"></i>
+
+Apply
+
+</button>
+
+</form>
+
+    <a href="{% url 'add_wish' %}" class="add-btn">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Add Wish
+
+    </a>
+
+</div>
+
+<div class="wish-grid">
+
+{% for wish in wishes %}
+
+<div class="wish-card">
+
+    {% if wish.image %}
+
+    <img src="{{wish.image.url}}">
+
+    {% endif %}
+
+    <div class="wish-content">
+
+        <h3>
+
+            {{wish.title}}
+
+        </h3>
+
+        <p>
+
+            {{wish.description|truncatewords:20}}
+
+        </p>
+        <div class="status-box">
+
+<span class="status">
+
+{{wish.status}}
+
+</span>
+
+</div>
+
+        <div class="wish-footer">
+
+            <span>
+
+                {% if request.user == wish.created_by %}
+
+                ❤️ Added by You
+
+                {% else %}
+
+                💖 Added by {{wish.created_by.first_name}}
+
+                {% endif %}
+
+            </span>
+
+            <span>
+
+          <span class="priority {{wish.priority|lower}}">
+
+            {{wish.priority}}
+
+            </span>
+
+            </span>
+
+        </div>
+
+        <a href="{% url 'view_wish' wish.id %}" class="view-btn">
+
+            View
+
+        </a>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="empty-state">
+
+<i class="fa-solid fa-heart-crack"></i>
+
+<h2>
+
+No Wishes Found
+
+</h2>
+
+<p>
+
+Start creating beautiful memories ❤️
+
+</p>
+
+
+<a href="{% url 'add_wish' %}"
+
+class="add-btn">
+
+Create First Wish
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
