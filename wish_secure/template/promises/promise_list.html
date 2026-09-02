@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Promises ❤️
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'css/promises.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="promises-header">
+
+    <div>
+
+        <p class="small-heading">
+            OUR WORDS
+        </p>
+
+        <h1>
+            Promise Vault 🤝
+        </h1>
+
+        <p>
+            The promises we made to each other.
+        </p>
+
+    </div>
+
+    <a href="{% url 'add_promise' %}"
+       class="add-promise-btn">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Make a Promise
+
+    </a>
+
+</div>
+
+
+<div class="promise-stats">
+
+    <div class="promise-stat">
+
+        <span>
+            💕
+        </span>
+
+        <div>
+            <strong>
+                {{ promises|length }}
+            </strong>
+
+            <small>
+                Total Promises
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="promises-grid">
+
+    {% for promise in promises %}
+
+        <div class="promise-card">
+
+            <div class="promise-card-top">
+
+                <div class="promise-icon">
+                    🤝
+                </div>
+
+                <span class="promise-status
+                    {% if promise.status == 'Active' %}
+                        active
+                    {% elif promise.status == 'Kept' %}
+                        kept
+                    {% else %}
+                        broken
+                    {% endif %}
+                ">
+
+                    {{ promise.status }}
+
+                </span>
+
+            </div>
+
+
+            <h2>
+                {{ promise.title }}
+            </h2>
+
+
+            <p class="promise-description">
+
+                {{ promise.description|truncatewords:25 }}
+
+            </p>
+
+
+            <div class="promise-meta">
+
+                <div>
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    {{ promise.promise_date|date:"d M Y" }}
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-heart"></i>
+
+                    {{ promise.made_by.username }}
+
+                </div>
+
+            </div>
+
+
+            <div class="promise-card-footer">
+
+                <span>
+
+                    {% if promise.status == "Kept" %}
+
+                        ❤️ Kept
+
+                    {% elif promise.status == "Broken" %}
+
+                        💔 Broken
+
+                    {% else %}
+
+                        🤞 Still active
+
+                    {% endif %}
+
+                </span>
+
+                <a href="{% url 'view_promise' promise.id %}">
+
+                    View →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="promises-empty">
+
+            <div class="empty-promise-icon">
+                🤝
+            </div>
+
+            <h2>
+                No promises yet
+            </h2>
+
+            <p>
+                Every beautiful story starts with a promise.
+            </p>
+
+            <a href="{% url 'add_promise' %}"
+               class="add-promise-btn">
+
+                Make Our First Promise ❤️
+
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

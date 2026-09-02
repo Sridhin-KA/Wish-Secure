@@ -532,3 +532,209 @@
 .activity-item:hover .activity-avatar {
     transform: scale(1.1);
 }
+
+
+/* =========================================
+   SPECIAL DATE DASHBOARD CARD
+========================================= */
+
+.special-date-dashboard-card {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 22px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 240, 247, 0.95),
+        rgba(255, 248, 252, 0.95)
+    );
+
+    border: 1px solid rgba(214, 51, 132, 0.12);
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    position: relative;
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(214, 51, 132, 0.08);
+}
+
+
+/* Decorative heart */
+
+.special-date-dashboard-card::after {
+    content: "❤️";
+
+    position: absolute;
+    right: 25px;
+    bottom: -20px;
+
+    font-size: 100px;
+    opacity: 0.05;
+
+    pointer-events: none;
+}
+
+
+/* Icon */
+
+.special-date-dashboard-icon {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 18px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    flex-shrink: 0;
+
+    box-shadow: 0 5px 15px rgba(214, 51, 132, 0.08);
+}
+
+
+/* Content */
+
+.special-date-dashboard-content {
+    flex: 1;
+}
+
+.dashboard-card-label {
+    margin: 0 0 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #d63384;
+}
+
+.special-date-dashboard-content h2 {
+    margin: 0;
+
+    font-size: 21px;
+
+    color: #333;
+}
+
+.special-date-dashboard-date {
+    margin: 5px 0;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* Countdown */
+
+.special-date-countdown {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: rgba(214, 51, 132, 0.1);
+
+    color: #d63384;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* View link */
+
+.special-date-dashboard-link {
+    color: #d63384;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    position: relative;
+    z-index: 2;
+}
+
+.special-date-dashboard-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Empty state */
+
+.special-date-dashboard-empty {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    width: 100%;
+}
+
+.special-date-dashboard-empty p {
+    color: #888;
+
+    font-size: 13px;
+
+    margin: 5px 0 10px;
+}
+
+.special-date-add-link {
+    color: #d63384;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.special-date-add-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .special-date-dashboard-card {
+        padding: 20px;
+
+        align-items: flex-start;
+    }
+
+    .special-date-dashboard-icon {
+        width: 50px;
+        height: 50px;
+
+        font-size: 24px;
+    }
+
+    .special-date-dashboard-content h2 {
+        font-size: 18px;
+    }
+
+    .special-date-dashboard-link {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+}

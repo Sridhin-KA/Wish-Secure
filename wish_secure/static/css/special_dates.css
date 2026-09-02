@@ -1,0 +1,824 @@
+.dates-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.dates-header h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.dates-header p {
+    color: #888;
+}
+
+.add-date-btn {
+    background: linear-gradient(135deg, #d63384, #9d4edd);
+    color: white;
+    padding: 13px 22px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.add-date-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.25);
+}
+
+
+/* Date Grid */
+
+.dates-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(280px, 1fr)
+    );
+    gap: 25px;
+}
+
+.date-card {
+    background: rgba(255,255,255,0.85);
+    padding: 28px;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(70,30,70,0.07);
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.date-card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(214,51,132,0.06);
+    right: -35px;
+    top: -35px;
+}
+
+.date-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(70,30,70,0.12);
+}
+
+.date-icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.date-type {
+    display: inline-block;
+    padding: 5px 11px;
+    background: #fff0f6;
+    color: #d63384;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.date-card h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 21px;
+}
+
+.date-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.date-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0;
+    color: #777;
+}
+
+.date-display .day {
+    font-size: 40px;
+    font-weight: 700;
+    color: #d63384;
+    line-height: 1;
+}
+
+.date-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 17px;
+    font-size: 12px;
+    color: #999;
+}
+
+.date-card-footer a {
+    color: #d63384;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* Empty */
+
+.dates-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.dates-empty > div {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.dates-empty h2 {
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.dates-empty p {
+    color: #999;
+    margin-bottom: 25px;
+}
+
+
+/* Form */
+
+.date-form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 50px;
+}
+
+.date-form-card {
+    width: 100%;
+    max-width: 750px;
+    background: rgba(255,255,255,0.9);
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 15px 45px rgba(70,30,70,0.08);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-header span {
+    font-size: 45px;
+}
+
+.form-header h1 {
+    color: #333;
+    margin: 10px 0;
+}
+
+.form-header p {
+    color: #888;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e3e3e3;
+    border-radius: 13px;
+    outline: none;
+    background: #fff;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #d63384;
+    box-shadow: 0 0 0 4px rgba(214,51,132,0.08);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.checkbox-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.checkbox-row input {
+    accent-color: #d63384;
+}
+
+.save-date-btn {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#d63384,#9d4edd);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    text-decoration: none;
+}
+
+
+/* Detail */
+
+.date-detail-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.date-detail-card {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border-radius: 30px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(70,30,70,0.08);
+}
+
+.detail-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.detail-type {
+    display: inline-block;
+    background: #fff0f6;
+    color: #d63384;
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.date-detail-card h1 {
+    font-size: 34px;
+    margin: 20px 0 30px;
+    color: #333;
+}
+
+.big-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.big-date > span {
+    font-size: 70px;
+    line-height: 1;
+    font-weight: 700;
+    color: #d63384;
+}
+
+.big-date div {
+    text-align: left;
+}
+
+.big-date strong {
+    display: block;
+    font-size: 24px;
+    color: #444;
+}
+
+.big-date small {
+    color: #999;
+}
+
+.detail-description {
+    background: #fff7fb;
+    padding: 22px;
+    border-radius: 18px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.detail-info {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.detail-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.detail-actions a {
+    padding: 11px 20px;
+    border-radius: 11px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.edit-date-btn {
+    background: #eef4ff;
+    color: #377dff;
+}
+
+.delete-date-btn {
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+.back-date-btn {
+    background: #f2f2f2;
+    color: #666;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .dates-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .dates-header h1 {
+        font-size: 29px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .date-form-card {
+        padding: 25px;
+    }
+
+    .date-detail-card {
+        padding: 30px 20px;
+    }
+
+    .date-detail-card h1 {
+        font-size: 28px;
+    }
+
+    .big-date > span {
+        font-size: 55px;
+    }
+
+    .detail-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+}
+
+
+.countdown {
+    margin: 15px 0 20px;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.days-number {
+    font-size: 27px;
+    font-weight: 700;
+    color: #d63384;
+}
+
+.days-text {
+    color: #999;
+    font-size: 13px;
+}
+
+.today-badge {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 20px;
+    background: #d63384;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    animation: todayPulse 2s infinite;
+}
+
+@keyframes todayPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+}
+
+.past-section {
+    margin-top: 60px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.past-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.past-card {
+    background: rgba(255,255,255,0.7);
+    padding: 18px 22px;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #eee;
+}
+
+.past-icon {
+    font-size: 25px;
+}
+
+.past-card h3 {
+    font-size: 15px;
+    color: #555;
+}
+
+.past-card p {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.past-card a {
+    margin-left: auto;
+    color: #d63384;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* =========================================
+   SPECIAL DATE CARD POLISH
+========================================= */
+
+.date-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.date-card::before {
+    content: "♥";
+
+    position: absolute;
+    top: -25px;
+    right: -15px;
+
+    font-size: 100px;
+
+    color: #d63384;
+
+    opacity: 0.035;
+
+    pointer-events: none;
+}
+
+.date-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 40px rgba(214, 51, 132, 0.13);
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.date-icon {
+    transition: transform 0.3s ease;
+}
+
+.date-card:hover .date-icon {
+    transform: scale(1.12) rotate(-5deg);
+}
+
+
+/* =========================================
+   DATE TYPE
+========================================= */
+
+.date-type {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    margin-top: 10px;
+
+    border-radius: 20px;
+
+    background: rgba(214, 51, 132, 0.08);
+
+    color: #d63384;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.date-card h2 {
+    transition: color 0.25s ease;
+}
+
+.date-card:hover h2 {
+    color: #d63384;
+}
+
+
+/* =========================================
+   DATE DISPLAY
+========================================= */
+
+.date-display {
+    position: relative;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: rgba(214, 51, 132, 0.04);
+
+    border: 1px solid rgba(214, 51, 132, 0.08);
+}
+
+.date-display .day {
+    font-size: 34px;
+
+    font-weight: 800;
+
+    color: #d63384;
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.countdown {
+    margin: 15px 0 20px;
+
+    min-height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.days-number {
+    font-size: 27px;
+
+    font-weight: 700;
+
+    color: #d63384;
+}
+
+.days-text {
+    color: #999;
+
+    font-size: 13px;
+}
+
+.today-badge {
+    display: inline-block;
+
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    background: #d63384;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    animation: todayPulse 2s infinite;
+}
+
+@keyframes todayPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.date-card-footer {
+    position: relative;
+
+    z-index: 2;
+}
+
+.date-card-footer a {
+    transition: transform 0.2s ease;
+}
+
+.date-card-footer a:hover {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.dates-empty {
+    width: 100%;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px dashed rgba(214, 51, 132, 0.2);
+}
+
+.dates-empty > div:first-child {
+    font-size: 50px;
+
+    margin-bottom: 15px;
+
+    animation: floatingHeart 3s ease-in-out infinite;
+}
+
+@keyframes floatingHeart {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+.dates-empty h2 {
+    color: #444;
+
+    margin-bottom: 8px;
+}
+
+.dates-empty p {
+    color: #999;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   PAST DATES
+========================================= */
+
+.past-section {
+    margin-top: 60px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.past-card {
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.past-card:hover {
+    transform: translateX(5px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .dates-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .add-date-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .dates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .date-card {
+        padding: 22px;
+    }
+
+    .date-display .day {
+        font-size: 30px;
+    }
+
+    .countdown {
+        margin-bottom: 15px;
+    }
+
+    .past-card {
+        padding: 15px;
+    }
+
+}

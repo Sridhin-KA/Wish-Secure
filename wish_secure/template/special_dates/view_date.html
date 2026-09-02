@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ special_date.title }}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'css/special_dates.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="date-detail-wrapper">
+
+    <div class="date-detail-card">
+
+        <div class="detail-icon">
+
+            {{ special_date.icon }}
+
+        </div>
+
+        <span class="detail-type">
+
+            {{ special_date.date_type }}
+
+        </span>
+
+        <h1>
+
+            {{ special_date.title }}
+
+        </h1>
+
+
+        <div class="big-date">
+
+            <span>
+                {{ special_date.date|date:"d" }}
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ special_date.date|date:"F" }}
+                </strong>
+
+                <small>
+                    {{ special_date.date|date:"Y" }}
+                </small>
+
+            </div>
+
+        </div>
+
+
+        {% if special_date.description %}
+
+        <div class="detail-description">
+
+            <p>
+                {{ special_date.description }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="detail-info">
+
+            {% if special_date.repeat_yearly %}
+
+            <span>
+                🔄 Happens every year
+            </span>
+
+            {% else %}
+
+            <span>
+                📌 One-time event
+            </span>
+
+            {% endif %}
+
+            <span>
+                Added by
+                {{ special_date.created_by.first_name }}
+            </span>
+
+        </div>
+
+
+        <div class="detail-actions">
+
+            {% if request.user == special_date.created_by %}
+
+            <a
+                href="{% url 'edit_date' special_date.id %}"
+                class="edit-date-btn">
+
+                ✏️ Edit
+
+            </a>
+
+            <a
+                href="{% url 'delete_date' special_date.id %}"
+                class="delete-date-btn"
+                onclick="return confirm('Delete this special date?')">
+
+                🗑️ Delete
+
+            </a>
+
+            {% endif %}
+
+            <a
+                href="{% url 'date_list' %}"
+                class="back-date-btn">
+
+                ← Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

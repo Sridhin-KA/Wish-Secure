@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ promise.title }} ❤️
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'css/promises.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="promise-view-page">
+
+    <div class="promise-view-card">
+
+        <div class="promise-view-icon">
+            🤝
+        </div>
+
+
+        <span class="promise-status
+            {% if promise.status == 'Active' %}
+                active
+            {% elif promise.status == 'Kept' %}
+                kept
+            {% else %}
+                broken
+            {% endif %}
+        ">
+
+            {{ promise.status }}
+
+        </span>
+
+
+        <h1>
+            {{ promise.title }}
+        </h1>
+
+
+        <div class="promise-quote">
+
+            <span>“</span>
+
+            <p>
+                {{ promise.description }}
+            </p>
+
+            <span>”</span>
+
+        </div>
+
+
+        <div class="promise-details">
+
+            <div>
+
+                <small>
+                    PROMISED BY
+                </small>
+
+                <strong>
+                    ❤️ {{ promise.made_by.username }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    PROMISE DATE
+                </small>
+
+                <strong>
+                    📅 {{ promise.promise_date|date:"d F Y" }}
+                </strong>
+
+            </div>
+
+
+            {% if promise.kept_at %}
+
+                <div>
+
+                    <small>
+                        KEPT ON
+                    </small>
+
+                    <strong>
+                        ❤️ {{ promise.kept_at|date:"d F Y" }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="promise-view-actions">
+
+            {% if promise.status == "Active" %}
+
+                <form method="POST"
+                      action="{% url 'keep_promise' promise.id %}">
+
+                    {% csrf_token %}
+
+                    <button type="submit"
+                            class="keep-btn">
+
+                        ❤️ Mark as Kept
+
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+
+            {% if promise.made_by == user %}
+
+                <a href="{% url 'edit_promise' promise.id %}"
+                   class="edit-promise-btn">
+
+                    Edit
+
+                </a>
+
+                <a href="{% url 'delete_promise' promise.id %}"
+                   class="delete-promise-btn">
+
+                    Delete
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <a href="{% url 'promise_list' %}"
+           class="back-link">
+
+            ← Back to Promise Vault
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

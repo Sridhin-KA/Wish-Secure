@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Edit {{ special_date.title }}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'css/special_dates.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="date-form-wrapper">
+
+    <div class="date-form-card">
+
+        <div class="form-header">
+
+            <span>
+                ✏️
+            </span>
+
+            <h1>
+                Edit Special Date
+            </h1>
+
+            <p>
+                Keep your memories up to date.
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                    Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    value="{{ special_date.title }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        name="date"
+                        value="{{ special_date.date|date:'Y-m-d' }}"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Type
+                    </label>
+
+                    <select name="date_type">
+
+                        <option value="Birthday"
+                        {% if special_date.date_type == "Birthday" %}selected{% endif %}>
+                            🎂 Birthday
+                        </option>
+
+                        <option value="Anniversary"
+                        {% if special_date.date_type == "Anniversary" %}selected{% endif %}>
+                            ❤️ Anniversary
+                        </option>
+
+                        <option value="First Date"
+                        {% if special_date.date_type == "First Date" %}selected{% endif %}>
+                            🌹 First Date
+                        </option>
+
+                        <option value="First Meeting"
+                        {% if special_date.date_type == "First Meeting" %}selected{% endif %}>
+                            💕 First Meeting
+                        </option>
+
+                        <option value="Trip"
+                        {% if special_date.date_type == "Trip" %}selected{% endif %}>
+                            ✈️ Trip
+                        </option>
+
+                        <option value="Achievement"
+                        {% if special_date.date_type == "Achievement" %}selected{% endif %}>
+                            🏆 Achievement
+                        </option>
+
+                        <option value="Other"
+                        {% if special_date.date_type == "Other" %}selected{% endif %}>
+                            ✨ Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Icon
+                </label>
+
+                <input
+                    type="text"
+                    name="icon"
+                    value="{{ special_date.icon }}">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    rows="5">{{ special_date.description }}</textarea>
+
+            </div>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    name="repeat_yearly"
+                    {% if special_date.repeat_yearly %}checked{% endif %}>
+
+                <span>
+                    Remember this every year 🔄
+                </span>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="save-date-btn">
+
+                Update Date ❤️
+
+            </button>
+
+
+            <a
+                href="{% url 'date_list' %}"
+                class="cancel-btn">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -25,6 +25,18 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('wishes/', include('wishes.urls')),
+    path(
+    "special-dates/",
+    include("special_dates.urls")
+),
+    path(
+    "promises/",
+    include("promises.urls")
+),
+    path(
+    "gifts/",
+    include("gifts.urls")
+),
 ]
 
 if settings.DEBUG:

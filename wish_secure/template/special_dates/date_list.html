@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Special Dates ❤️
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'css/special_dates.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="dates-header">
+
+    <div>
+
+        <p class="small-heading">
+            OUR STORY
+        </p>
+
+        <h1>
+            Special Dates ❤️
+        </h1>
+
+        <p>
+            The days that became memories.
+        </p>
+
+    </div>
+
+    <a href="{% url 'add_date' %}"
+       class="add-date-btn">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Add Special Date
+
+    </a>
+
+</div>
+
+
+<!-- =========================
+     UPCOMING DATES
+========================= -->
+
+<div class="dates-grid">
+
+    {% for item in dates %}
+
+        <div class="date-card">
+
+            <div class="date-icon">
+                {{ item.icon }}
+            </div>
+
+            <div class="date-type">
+                {{ item.date_type }}
+            </div>
+
+            <h2>
+                {{ item.title }}
+            </h2>
+
+            {% if item.description %}
+
+                <p>
+                    {{ item.description|truncatewords:20 }}
+                </p>
+
+            {% endif %}
+
+
+            <!-- DATE -->
+
+            <div class="date-display">
+
+                <span class="day">
+                    {{ item.next_date|date:"d" }}
+                </span>
+
+                <span>
+                    {{ item.next_date|date:"F Y" }}
+                </span>
+
+            </div>
+
+
+            <!-- COUNTDOWN -->
+
+            <div class="countdown">
+
+                {% if item.today %}
+
+                    <span class="today-badge">
+                        ❤️ TODAY ❤️
+                    </span>
+
+                {% elif item.remaining_days == 1 %}
+
+                    <span class="days-number">
+                        Tomorrow
+                    </span>
+
+                {% else %}
+
+                    <span class="days-number">
+                        {{ item.remaining_days }}
+                    </span>
+
+                    <span class="days-text">
+                        days left
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="date-card-footer">
+
+                {% if item.repeat_yearly %}
+
+                    <span>
+                        🔄 Every year
+                    </span>
+
+                {% else %}
+
+                    <span>
+                        📌 One time
+                    </span>
+
+                {% endif %}
+
+                <a href="{% url 'view_date' item.id %}">
+                    View →
+                </a>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="dates-empty">
+
+            <div>
+                💌
+            </div>
+
+            <h2>
+                No upcoming special dates
+            </h2>
+
+            <p>
+                Let's save the important days of your story.
+            </p>
+
+            <a href="{% url 'add_date' %}"
+               class="add-date-btn">
+
+                Add Special Date ❤️
+
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+<!-- =========================
+     PAST DATES
+========================= -->
+
+{% if past_dates %}
+
+    <section class="past-section">
+
+        <div class="section-heading">
+
+            <p class="small-heading">
+                OUR MEMORIES
+            </p>
+
+            <h2>
+                Past Special Dates 🕰️
+            </h2>
+
+            <p>
+                The beautiful moments that already happened.
+            </p>
+
+        </div>
+
+
+        <div class="past-grid">
+
+            {% for item in past_dates %}
+
+                <div class="past-card">
+
+                    <div class="past-icon">
+                        {{ item.icon }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ item.title }}
+                        </h3>
+
+                        <p>
+                            {{ item.date|date:"d F Y" }}
+                        </p>
+
+                    </div>
+
+                    <a href="{% url 'view_date' item.id %}">
+                        View →
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endif %}
+
+
+{% endblock %}
